@@ -1,31 +1,34 @@
 # src/ingest/github_ingest.py
-import requests
-from utils.config import GITHUB_TOKEN
-from utils.logger import get_logger
 
+import os
+import requests
+from utils.logger import get_logger
+from dotenv import load_dotenv
+
+load_dotenv()
 logger = get_logger(__name__)
 
-headers = {
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
-    "Accept": "application/vnd.github.v3+json"
+    "Accept": "application/vnd.github+json"
 }
 
-def fetch_trending_repos(query="language:python", sort="stars", order="desc", per_page=5):
+def fetch_trending_repos(language="python", sort="stars", order="desc", per_page=5):
+    logger.info(f"Fetching trending repos with query: language={language}")
+    
     url = "https://api.github.com/search/repositories"
     params = {
-        "q": query,
+        "q": f"language:{language}",
         "sort": sort,
         "order": order,
         "per_page": per_page
     }
 
-    logger.info(f"Fetching trending repos with query: {query}")
-    response = requests.get(url, headers=headers, params=params)
-
-    if response.status_code == 200:
-        repos = response.json().get("items", [])
-        logger.info(f"Fetched {len(repos)} repositories.")
-        return repos
-    else:
+    response = requests.get(url, headers=HEADERS, params=params)
+    
+    if response.status_code != 200:
         logger.error(f"GitHub API error: {response.status_code} - {response.text}")
         return []
+
+    return response.json().get("items", [])
