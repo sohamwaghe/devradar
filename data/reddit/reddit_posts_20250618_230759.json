@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1ldx4p4",
+    "title": "Interview with a 0.1x engineer",
+    "score": 1815,
+    "url": "https://youtu.be/hwG89HH0VcM?si=OXYS9_iz0F5HnxBC",
+    "author": "floriandotorg",
+    "num_comments": 166,
+    "created_utc": 1750190170.0,
+    "subreddit": "programming"
+  },
+  {
+    "id": "1ldyvtv",
+    "title": "The Grug Brained Developer",
+    "score": 213,
+    "url": "https://grugbrain.dev/",
+    "author": "gametorch",
+    "num_comments": 33,
+    "created_utc": 1750194330.0,
+    "subreddit": "programming"
+  },
+  {
+    "id": "1lduuw1",
+    "title": "Double-Entry Ledgers: The Missing Primitive in Modern Software",
+    "score": 88,
+    "url": "https://pgrs.net/2025/06/17/double-entry-ledgers-missing-primitive-in-modern-software/",
+    "author": "pgr0ss",
+    "num_comments": 37,
+    "created_utc": 1750184895.0,
+    "subreddit": "programming"
+  },
+  {
+    "id": "1le9yyi",
+    "title": "Data Oriented Design, Region-Based Memory Management, and Security",
+    "score": 18,
+    "url": "https://guide.handmadehero.org/code/day341/",
+    "author": "nerd8622",
+    "num_comments": 8,
+    "created_utc": 1750227703.0,
+    "subreddit": "programming"
+  },
+  {
+    "id": "1leaam8",
+    "title": "Benchmark: snapDOM may be a serious alternative to html2canvas",
+    "score": 9,
+    "url": "https://zumerlab.github.io/snapdom/#benchmark",
+    "author": "tinchox5",
+    "num_comments": 0,
+    "created_utc": 1750228997.0,
+    "subreddit": "programming"
+  }
+]

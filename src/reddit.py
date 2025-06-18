@@ -10,7 +10,7 @@ load_dotenv()
 
 def main():
     # Step 1: Fetch raw Reddit posts
-    raw_posts = fetch_top_posts(subreddit_name="programming", limit=5)
+    raw_posts = fetch_top_posts(subreddit_name="programming", limit=5, time_filter="day")
 
     # Step 2: Normalize them
     normalized_posts = normalize_posts(raw_posts)
