@@ -1,19 +1,28 @@
 # src/storage/reddit_storage.py
 
-import json
-import os
-from datetime import datetime
+from db.database import SessionLocal
+from db.models import RedditPost
 from utils.logger import get_logger
+from datetime import datetime
 
 logger = get_logger(__name__)
 
-def save_posts_to_json(posts, directory="data/reddit"):
-    os.makedirs(directory, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"reddit_posts_{timestamp}.json"
-    filepath = os.path.join(directory, filename)
-
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(posts, f, indent=2)
-
-    logger.info(f"Saved {len(posts)} posts to {filepath}")
+def save_reddit_to_db(posts):
+    session = SessionLocal()
+    try:
+        for post in posts:
+            record = RedditPost(
+                title=post["title"],
+                score=post["score"],
+                url=post["url"],
+                subreddit=post["subreddit"],
+                timestamp=datetime.utcnow()
+            )
+            session.add(record)
+        session.commit()
+        logger.info(f"Saved {len(posts)} Reddit posts to database.")
+    except Exception as e:
+        logger.error(f"Error saving Reddit posts: {e}")
+        session.rollback()
+    finally:
+        session.close()

@@ -14,6 +14,21 @@ HEADERS = {
     "Accept": "application/vnd.github+json"
 }
 
+def fetch_top_repos(limit=5):
+    raw_repos = fetch_trending_repos(per_page=limit)
+    repos = []
+    for repo in raw_repos:
+        repos.append({
+            "name": repo["full_name"],
+            "stars": repo["stargazers_count"],
+            "url": repo["html_url"],
+            "description": repo.get("description", ""),
+            "language": repo.get("language", "")
+        })
+    return repos
+
+
+
 def fetch_trending_repos(language="python", sort="stars", order="desc", per_page=5):
     logger.info(f"Fetching trending repos with query: language={language}")
     
