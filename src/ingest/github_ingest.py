@@ -4,6 +4,8 @@ import os
 import requests
 from utils.logger import get_logger
 from dotenv import load_dotenv
+from datetime import datetime
+
 
 load_dotenv()
 logger = get_logger(__name__)
@@ -14,18 +16,21 @@ HEADERS = {
     "Accept": "application/vnd.github+json"
 }
 
-def fetch_top_repos(limit=5):
-    raw_repos = fetch_trending_repos(per_page=limit)
-    repos = []
+def fetch_top_repos(language="python", limit=5):
+    raw_repos = fetch_trending_repos(language=language, per_page=limit)
+    
+    formatted_repos = []
     for repo in raw_repos:
-        repos.append({
-            "name": repo["full_name"],
-            "stars": repo["stargazers_count"],
-            "url": repo["html_url"],
+        formatted_repos.append({
+            "name": repo.get("full_name"),
+            "url": repo.get("html_url"),
+            "stars": repo.get("stargazers_count"),  # ✅ Translate to 'stars'
             "description": repo.get("description", ""),
-            "language": repo.get("language", "")
+            "language": repo.get("language", ""),
+            "timestamp": datetime.utcnow()
         })
-    return repos
+    
+    return formatted_repos
 
 
 
@@ -41,9 +46,11 @@ def fetch_trending_repos(language="python", sort="stars", order="desc", per_page
     }
 
     response = requests.get(url, headers=HEADERS, params=params)
-    
+
     if response.status_code != 200:
         logger.error(f"GitHub API error: {response.status_code} - {response.text}")
         return []
 
-    return response.json().get("items", [])
+    data = response.json()
+    return data.get("items", [])  # ✅ Make sure this returns a list of repo dicts
+

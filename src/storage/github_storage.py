@@ -11,19 +11,20 @@ def save_github_to_db(repos):
     session = SessionLocal()
     try:
         for repo in repos:
-            record = GitHubRepo(
+            db_repo = GitHubRepo(
                 name=repo["name"],
                 url=repo["url"],
                 stars=repo["stars"],
                 description=repo.get("description", ""),
                 language=repo.get("language", ""),
-                timestamp=datetime.utcnow()
+                timestamp=repo["timestamp"]
             )
-            session.add(record)
+            session.add(db_repo)
         session.commit()
-        logger.info(f"Saved {len(repos)} GitHub repos to database.")
+        print(f"✅ Saved {len(repos)} GitHub repos to DB.")
     except Exception as e:
-        logger.error(f"Error saving GitHub repos: {e}")
+        print(f"❌ Error saving GitHub repos: {e}")
         session.rollback()
     finally:
         session.close()
+
