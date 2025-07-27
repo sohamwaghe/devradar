@@ -1,8 +1,14 @@
-<<<<<<< HEAD
+
 🚀 DevRadar - Real-time Developer Intelligence Dashboard
 
 A full-stack Python application that aggregates trending GitHub repositories, Reddit discussions, and tech news into a unified, real-time dashboard for developers.
 
+<img width="1875" height="135" alt="Screenshot 2025-07-27 124612" src="https://github.com/user-attachments/assets/cd96aae3-e6cf-4038-a7ad-ba465c435120" />
+<br>
+<img width="1533" height="740" alt="Screenshot 2025-07-27 124523" src="https://github.com/user-attachments/assets/40fbee79-81b3-4a24-8275-5af3292c91ee" />
+<br>
+<img width="1900" height="794" alt="Screenshot 2025-07-27 124458" src="https://github.com/user-attachments/assets/e98b0302-a0a9-4aa7-93ed-3bb943ec458a" />
+<br>
 
 
 🎯 Project Overview
