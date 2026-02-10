@@ -201,7 +201,7 @@ Project Link: https://github.com/sohamwaghe/devradar
 
 <div align="center">
 ⭐ If this project helped you, please give it a star! ⭐
-Made with ❤️ and lots of ☕ by [Your Name]
+Made with ❤️ and lots of ☕ by Soham Waghe
 </div>
 =======
 # 📊 DevRadar
